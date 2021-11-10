@@ -1,4 +1,14 @@
-const obtenerCortes=(req,res) =>{
+import executeQuery from "../services/mysql.service";
+
+const obtenerCortes=async (req,res) =>{
+    await executeQuery('SELECT * FROM corte').then((response)=>{
+
+        res.json({
+            data:response
+        });
+    }).catch((error)=>{
+        res.status(500).send(error);
+    })
     res.send('Respuesta desde el controlador');
 }
 const obtenerCorte=(req,res) =>{
